@@ -4,7 +4,13 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        components: '@/components'
+        assets: '@/assets',
+        components: '@/components',
+        global: '@/global',
+        router: '@/router',
+        service: '@/service',
+        store: '@/store',
+        views: '@/views'
       }
     }
   }

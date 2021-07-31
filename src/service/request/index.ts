@@ -31,7 +31,6 @@ class CxRequest {
     // 所有实例都有的拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有的实例都有的请求成功拦截')
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -42,24 +41,20 @@ class CxRequest {
         return config
       },
       (err) => {
-        console.log('所有的实例都有的请求失败拦截')
         console.log(err)
       }
     )
     this.instance.interceptors.response.use(
       (res) => {
-        console.log('所有的实例都有的响应成功拦截')
         // 将loading移除
         this.loading?.close()
         if (res.data.returnCode === '200') {
           return res.data
         } else {
           console.log('错误信息')
-          return res.data
         }
       },
       (err) => {
-        console.log('所有的实例都有的响应失败拦截')
         // 将loading移除
         this.loading?.close()
         // 请求失败的处理
@@ -71,7 +66,7 @@ class CxRequest {
     )
   }
 
-  request<T>(config: CxRequestConfig): Promise<T> {
+  request<T>(config: CxRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 单个请求的请求成功拦截器
       if (config.interceptors?.requestInterceptor) {
@@ -99,16 +94,16 @@ class CxRequest {
         })
     })
   }
-  get<T>(config: CxRequestConfig): Promise<T> {
+  get<T>(config: CxRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
-  post<T>(config: CxRequestConfig): Promise<T> {
+  post<T>(config: CxRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
-  delete<T>(config: CxRequestConfig): Promise<T> {
+  delete<T>(config: CxRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
-  patch<T>(config: CxRequestConfig): Promise<T> {
+  patch<T>(config: CxRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
