@@ -30,6 +30,7 @@ export default defineComponent({
       verifyCode: ''
     })
     const loginPhoneFormRef = ref<InstanceType<typeof ElForm>>()
+    // 手机号方式登录
     const phoneLoginAction = () => {
       loginPhoneFormRef.value?.validate((valid) => {
         if (valid) {

@@ -48,7 +48,7 @@ class CxRequest {
       (res) => {
         // 将loading移除
         this.loading?.close()
-        if (res.data.returnCode === '200') {
+        if (res.data.code === 0) {
           return res.data
         } else {
           console.log('错误信息')
