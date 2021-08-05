@@ -1,6 +1,6 @@
-import { createStore } from 'vuex'
+import { createStore, Store, useStore as useVuexStore } from 'vuex'
 
-import { IRootState } from './types'
+import { IRootState, IStoreType } from './types'
 
 import loginModule from './login/login'
 
@@ -16,10 +16,16 @@ const store = createStore<IRootState>({
   }
 })
 
+// 初始化vuex
 export const loadLocalLoginInfo = () => {
   store.dispatch({
     type: 'loginModule/loadLocalLoginInfoAction'
   })
+}
+
+// 自定义useStore
+export const useStore = (): Store<IStoreType> => {
+  return useVuexStore()
 }
 
 export default store
