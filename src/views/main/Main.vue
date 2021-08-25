@@ -8,7 +8,11 @@
         <el-header>
           <nav-header @changeFoldState="changeFoldState" />
         </el-header>
-        <el-main>Main</el-main>
+        <el-main>
+          <div class="page">
+            <router-view />
+          </div>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -55,6 +59,10 @@ export default defineComponent({
   }
   .el-main {
     background-color: #eee;
+  }
+  .page {
+    background-color: #fff;
+    border-radius: 5px;
   }
 }
 </style>

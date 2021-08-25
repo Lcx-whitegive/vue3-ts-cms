@@ -7,6 +7,9 @@ import { localCache } from '@/utils/cache'
 
 import router from '@/router'
 
+import mapMenusToRoutes from '@/utils/mapMenus'
+import { mapMenusToPermissions } from '@/utils/mapMenus'
+
 import {
   accountLoginRequest,
   getUserInfoById,
@@ -19,7 +22,8 @@ const loginModule: Module<ILoginState, IRootState> = {
     return {
       token: '',
       userInfo: {},
-      userMenus: []
+      userMenus: [],
+      permissions: []
     }
   },
   actions: {
@@ -84,6 +88,14 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     changeUserMenus(state, payload: any) {
       state.userMenus = payload.userMenus
+      // 动态注册路由
+      const routes = mapMenusToRoutes(payload.userMenus)
+      routes.forEach((item) => {
+        router.addRoute('main', item)
+      })
+      // 获取按钮权限
+      const permissions = mapMenusToPermissions(payload.userMenus)
+      state.permissions = permissions
     }
   }
 }

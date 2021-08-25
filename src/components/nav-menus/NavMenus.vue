@@ -4,7 +4,12 @@
       <img v-show="!isCollapse" src="~assets/img/logo.jpg" />
       <span v-show="!isCollapse" class="title">S1mple</span>
     </div>
-    <el-menu class="el-menu-vertical-demo" :collapse="isCollapse" unique-opened>
+    <el-menu
+      class="el-menu-vertical-demo"
+      :collapse="isCollapse"
+      unique-opened
+      :default-active="currentPath"
+    >
       <template v-for="item in userMenus" :key="item.id">
         <el-submenu :index="item.url">
           <template #title>
@@ -13,7 +18,10 @@
           </template>
           <template v-if="item.children">
             <template v-for="menuItem in item.children" :key="menuItem.id">
-              <el-menu-item :index="menuItem.url">
+              <el-menu-item
+                :index="menuItem.url"
+                @click="handleMenuClick(menuItem)"
+              >
                 <template #title>{{ menuItem.name }}</template>
               </el-menu-item>
             </template>
@@ -27,6 +35,8 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 
+import { useRouter, useRoute } from 'vue-router'
+
 import { useStore } from '@/store'
 
 export default defineComponent({
@@ -38,11 +48,20 @@ export default defineComponent({
   },
   setup() {
     const store = useStore()
+    const router = useRouter()
+    const route = useRoute()
+    const currentPath = route.path
     const userMenus = computed(() => {
       return store.state.loginModule.userMenus
     })
+    // 导航跳转
+    const handleMenuClick = (item: any) => {
+      router.push(item.url)
+    }
     return {
-      userMenus
+      userMenus,
+      handleMenuClick,
+      currentPath
     }
   }
 })

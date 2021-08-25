@@ -5,17 +5,17 @@ import App from './App.vue'
 import 'normalize.css'
 import './assets/css/index.less'
 
-import router from '@/router/index'
-import store from '@/store/index'
-import { loadLocalLoginInfo } from '@/store/index'
+import router from './router'
+import store from './store'
+import { loadLocalLoginInfo } from './store'
 
 // 项目全局注册的内容
 import globalRegister from './global'
 
 const app = createApp(App)
 
-loadLocalLoginInfo()
 app.use(globalRegister)
-app.use(router)
 app.use(store)
+loadLocalLoginInfo()
+app.use(router)
 app.mount('#app')

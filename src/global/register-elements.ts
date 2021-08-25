@@ -14,7 +14,26 @@ import {
   ElHeader,
   ElMenu,
   ElSubmenu,
-  ElMenuItem
+  ElMenuItem,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElAvatar,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn,
+  ElPagination,
+  ElImage,
+  ElDialog,
+  ElMessageBox,
+  ElMessage,
+  ElCard
 } from 'element-plus'
 import 'element-plus/lib/theme-chalk/base.css'
 
@@ -33,7 +52,26 @@ const components = [
   ElHeader,
   ElMenu,
   ElSubmenu,
-  ElMenuItem
+  ElMenuItem,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElAvatar,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn,
+  ElPagination,
+  ElImage,
+  ElDialog,
+  ElMessageBox,
+  ElMessage,
+  ElCard
 ]
 
 export default function registerElements(app: App): void {
