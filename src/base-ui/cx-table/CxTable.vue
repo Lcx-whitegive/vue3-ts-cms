@@ -43,7 +43,7 @@
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page="queryInfo.offset / queryInfo.size + 1"
-          :page-sizes="[3, 4, 5, 6]"
+          :page-sizes="[3, 4, 5, 10]"
           :page-size="queryInfo.size"
           layout="total, sizes, prev, pager, next, jumper"
           :total="listCount"
